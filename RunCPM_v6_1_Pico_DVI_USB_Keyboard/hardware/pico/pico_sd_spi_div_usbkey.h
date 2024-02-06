@@ -1,4 +1,6 @@
 // SPDX-FileCopyrightText: 2023 Mockba the Borg
+// SPDX-FileCopyrightText: 2023 Jeff Epler for Adafruit Industries
+// SPDX-FileCopyrightText: 2024 Hisashi Kato
 //
 // SPDX-License-Identifier: MIT
 
