@@ -76,4 +76,4 @@ Arduino IDE で "RunCPM_v6_1_Pico_DVI_USB_Keyboard.ino" を読み込んで、以
 
 #### おまけ
 英語キーボードの使用が前提なのですが、今回おまけで日本語キーボードでの入力に対応させてみました。
-RunCPM_v6_1_Pico_DVI_USB_Keyboard\hardware\pico にある "pico_sd_spi_div_usbkey.h" 内の「#include "keymapperUS.h"」を「#include "keymapperJP.h"」に書き代えると、日本語キーボード配列になります(記号等が日本語キーボード準拠になる)。
+RunCPM_v6_1_Pico_DVI_USB_Keyboard\hardware\pico にある "pico_sd_spi_dvi_usbkey.h" 内の「#include "keymapperUS.h"」を「#include "keymapperJP.h"」に書き代えると、日本語キーボード配列になります(記号等が日本語キーボード準拠になる)。
