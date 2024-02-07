@@ -46,7 +46,7 @@ Adafruit の作例では、RP2040搭載ボードを2枚、使用しています�
 * USB OTG ケーブル(USBキーボード接続用)と、USBキーボード
 * 5V電源
 
-今回のプログラムソース(Arduinoスケッチ)では、下記のピンアサインになっています。(Serial1 の入出力も生きています)
+今回のプログラムソース(Arduinoスケッチ)では、下記のピンアサインになっています。(Serial1 の入出力も生きています、同時使用が出来ます)
 <img src="images/RunCPM_Pico_PicoDVI_USB_Keyboard.jpg" width="800"><br><br>
 
 Raspberry Pi Pico (RP2040) は、ピンアサインが比較的柔軟に設定できるので、各自の環境に合わせて書き直して使用してください。
