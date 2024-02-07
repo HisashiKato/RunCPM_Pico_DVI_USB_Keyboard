@@ -26,7 +26,7 @@ https://github.com/MockbaTheBorg/RunCPM
 RunCPM for the Raspberry Pico (RunCPM の Raspberry Pi Pico 移植版)</br>
 https://github.com/guidol70/RunCPM_RPi_Pico
 
-RP2040 RunCPM Emulator with USB Keyboard & HDMI screen (Adafruit社の自社製品のRP2040ボードを使用した作例)</br>
+RP2040 RunCPM Emulator with USB Keyboard & HDMI screen (Adafruit社の自社製品RP2040ボードを使用した作例)</br>
 https://learn.adafruit.com/rp2040-runcpm-emulator-with-usb-keyboard-hdmi-screen
 </br>
 
@@ -46,7 +46,7 @@ Adafruit の作例では、RP2040搭載ボードを2枚、使用しています�
 * USB OTG ケーブル(USBキーボード接続用)と、USBキーボード
 * 5V電源
 
-今回のプログラムソース(Arduinoスケッチ)では、下記のピンアサインになっています。(Serial1 の入出力も生きています、同時使用が出来ます)
+今回のプログラムソース(Arduinoスケッチ)では、下記のピンアサインになっています。(Serial1 の入出力が生きています、同時使用が出来ます)
 <img src="images/RunCPM_Pico_PicoDVI_USB_Keyboard.jpg" width="800"><br><br>
 
 Raspberry Pi Pico (RP2040) は、ピンアサインが比較的柔軟に設定できるので、各自の環境に合わせて書き直して使用してください。
@@ -71,9 +71,9 @@ Arduino IDE で "RunCPM_v6_1_Pico_DVI_USB_Keyboard.ino" を読み込んで、以
 * USB Stack:"Adafruit TinyUSB Host"
 </br>( "Adafruit TinyUSB Host" を選んでいるにも関わらず warning が出たりしますけれど大丈夫っぽいです)
 
-※ぱいぴこの USB を USB HOST で使用すると、それ以降、そのままでは USB からのスケッチ(プログラム)の書き込みが出来ません。</br>
+※ぱいぴこの USB を USB HOST で使用すると、それ以降そのままでは USB からのスケッチ(プログラム)の書き込みが出来ません。</br>
 スケッチを書き込む際は、ぱいぴこのUSBコネクタから USB OTG ケーブルを抜いて、BOOTSELボタンを押しながらPCのUSBケーブルを繋ぐか、PCのUSBケーブルを繋いだ状態でBOOTSELボタンを押しながらRESETボタンを押すと、Arduino IDE のシリアルポートに "UF2 Board" が現れるので、そこに書き込みを行ってください。</br></br>
 
 #### おまけ
 英語キーボードの使用が前提なのですが、今回おまけで日本語キーボードでの入力に対応させてみました。
-RunCPM_v6_1_Pico_DVI_USB_Keyboard\hardware\pico にある "pico_sd_spi_dvi_usbkey.h" 内の「#include "keymapperUS.h"」を「#include "keymapperJP.h"」に書き代えると、日本語キーボード配列になります(記号等が日本語キーボード準拠になる)。
+RunCPM_v6_1_Pico_DVI_USB_Keyboard\hardware\pico にある "pico_sd_spi_dvi_usbkey.h" 内の「#include "keymapperUS.h"」を「#include "keymapperJP.h"」に書き代えると、日本語キーボード配列になります(記号等の入力が日本語キーボード準拠になります)。
