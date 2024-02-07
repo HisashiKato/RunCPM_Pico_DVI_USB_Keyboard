@@ -49,11 +49,10 @@
 // =========================================================================================
 
 // Raspberry Pi Pico - normal (LED = GPIO25)
-#include "hardware/pico/pico_sd_spi_div_usbkey.h"
+#include "hardware/pico/pico_sd_spi_dvi_usbkey.h"
 //#include "hardware/pico/pico_sd_spi.h"
 
 // Raspberry Pi Pico W(iFi)   (LED = GPIO32)
-//#include "hardware/pico/pico_w_sd_spi_div.h"
 //#include "hardware/pico/pico_w_sd_spi.h"
 
 #ifndef BOARD_TEXT
