@@ -91,11 +91,9 @@ bool kbhit_usbh(void) {
 // USB Keyboard
 #if USE_KEYBOARD
 
-/*
 #ifndef USE_TINYUSB_HOST
-#error This example requires usb stack configured as host in "Tools -> USB Stack -> Adafruit TinyUSB Host"
+#error This sketch requires usb stack configured as host in "Tools -> USB Stack -> Adafruit TinyUSB Host"
 #endif
-*/
 
 #define KBD_INT_TIME 100 // USB HOST processing interval us
 
