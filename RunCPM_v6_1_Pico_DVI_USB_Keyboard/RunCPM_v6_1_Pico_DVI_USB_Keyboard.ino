@@ -55,6 +55,16 @@
 // Raspberry Pi Pico W(iFi)   (LED = GPIO32)
 //#include "hardware/pico/pico_w_sd_spi.h"
 
+// =========================================================================================
+// Startup Messages Text (please write it yourself)
+// =========================================================================================
+#define PICO_OR_W " Pico "
+#define PICOCORE_VER "v0.0.0"
+#define SDFAT_VER "v0.0.0"
+#define PICODVI_VER "v0.0.0"
+#define TINYUSB_VER "v0.0.0"
+
+
 #ifndef BOARD_TEXT
 #define BOARD_TEXT USB_MANUFACTURER " " USB_PRODUCT
 #endif
@@ -159,10 +169,23 @@ void setup(void) {
   
   _puts("CP/M Emulator " TEXT_BOLD "v" VERSION "" TEXT_NORMAL "   by   " TEXT_BOLD "Marcelo  Dantas" TEXT_NORMAL "\r\n");
   _puts("----------------------------------------------\r\n");  
-  _puts("     running    on   Raspberry Pi [" TEXT_BOLD " Pico " TEXT_NORMAL "]\r\n");
-  _puts("     compiled with   RP2040       [" TEXT_BOLD "v3.6.3" TEXT_NORMAL "]\r\n");  
-  _puts("               and   SDFat        [" TEXT_BOLD "v2.2.3" TEXT_NORMAL "]\r\n");  
+  _puts("       running  on   Raspberry Pi [" TEXT_BOLD "");
+  _puts(PICO_OR_W);
+  _puts("" TEXT_NORMAL "]\r\n");
+  _puts("       compiled with RP2040 Core  [" TEXT_BOLD "");
+  _puts(PICOCORE_VER);
+  _puts("" TEXT_NORMAL "]\r\n");  
+  _puts("           Arduino   SDFat        [" TEXT_BOLD "");
+  _puts(SDFAT_VER);
+  _puts("" TEXT_NORMAL "]\r\n");  
+  _puts("           Libraries PicoDVI      [" TEXT_BOLD "");
+  _puts(PICODVI_VER);
+  _puts("" TEXT_NORMAL "]\r\n");  
+  _puts("                     TinyUSB      [" TEXT_BOLD "");
+  _puts(TINYUSB_VER);
+  _puts("" TEXT_NORMAL "]\r\n");  
   _puts("----------------------------------------------\r\n");
+
   _puts("Revision             [" TEXT_BOLD "");
   _puts(GL_REV);
   _puts("" TEXT_NORMAL "]\r\n");
@@ -193,7 +216,7 @@ void setup(void) {
 
   _puts("CPU-Clock            [" TEXT_BOLD "");
   _putdec((clock_get_hz( clk_sys ) + 500'000) / 1'000'000);
-           _puts("Mhz" TEXT_NORMAL "]\r\n");
+  _puts("Mhz" TEXT_NORMAL "]\r\n");
 
 // =========================================================================================
 // Redefine SPI-Pins - if needed : (SPI.) = SPI0 / (SPI1.) = SPI1
@@ -250,15 +273,15 @@ void setup(void) {
 // Serial.printf("DEBUG: SD-Access failed at MHZ:  %d \r\n", CALMHZ);
 // _puts("While end...\r\n");
 
-  _puts("Init MicroSD-Card    [ " TEXT_BOLD "");
+  _puts("Init MicroSD-Card    [   " TEXT_BOLD "");
 //  old SDINIT
 //  if (SD.begin(SDINIT)) {
 
 // NEW SDCONFIG = formerly SDINIT
 if (SD.begin(SD_CONFIG)) {
-                        _puts(SDMHZ_TXT);
-                        _puts("Mhz" TEXT_NORMAL "]\r\n");
-  _puts("----------------------------------------------");
+      _puts(SDMHZ_TXT);
+      _puts("Mhz" TEXT_NORMAL "]\r\n");
+      _puts("----------------------------------------------");
 
                         
     if (VersionCCP >= 0x10 || SD.exists(CCPname)) {
