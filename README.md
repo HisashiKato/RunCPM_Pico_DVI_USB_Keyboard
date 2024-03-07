@@ -72,7 +72,12 @@ Arduino IDE で "RunCPM_v6_1_Pico_DVI_USB_Keyboard.ino" を読み込んで、以
 </br>( "Adafruit TinyUSB Host" を選んでいるにも関わらず warning が出たりしますけれど大丈夫っぽいです)
 
 ※ぱいぴこの USB を USB HOST で使用すると、それ以降そのままでは USB からのスケッチ(プログラム)の書き込みが出来ません。</br>
-スケッチを書き込む際は、ぱいぴこのUSBコネクタから USB OTG ケーブルを抜いて、BOOTSELボタンを押しながらPCのUSBケーブルを繋ぐか、PCのUSBケーブルを繋いだ状態でBOOTSELボタンを押しながらRESETボタンを押すと、Arduino IDE のシリアルポートに "UF2 Board" が現れるので、そこに書き込みを行ってください。</br></br>
+スケッチを書き込む際は、ぱいぴこのUSBコネクタから USB OTG ケーブルを抜いて、BOOTSELボタンを押しながらPCのUSBケーブルを繋ぐか、PCのUSBケーブルを繋いだ状態でBOOTSELボタンを押しながらRESETボタンを押すと、Arduino IDE のシリアルポートに "UF2 Board" が現れるので、そこに書き込みを行ってください。</br>
+
+※Raspberry Pi Pico / RP2040 の Arduino Core や、使用するライブラリ群は、出来る限り新しいバージョンに更新してください。</br>
+特に Raspberry Pi Pico / RP2040 の Arduino Core と Adafruit TinyUSB Library for Arduino は、昔のバージョンでは RP2040 のネイティブUSBホストに対応していないため、USBキーボードが使用できません。</br>
+Arduino IDE のボードマネージャとライブラリマネージャーで更新を行って、出来る限り新しいバージョンを使用してください。</br></br>
+
 
 #### おまけ
 英語キーボードの使用が前提なのですが、今回おまけで日本語キーボードでの入力に対応させてみました。
