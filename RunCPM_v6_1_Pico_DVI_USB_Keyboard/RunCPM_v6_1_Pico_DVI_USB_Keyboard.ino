@@ -64,10 +64,11 @@
 #define PICODVI_VER "v0.0.0"
 #define TINYUSB_VER "v0.0.0"
 
-
+/*
 #ifndef BOARD_TEXT
 #define BOARD_TEXT USB_MANUFACTURER " " USB_PRODUCT
 #endif
+*/
 
 #include "abstraction_arduino.h"
 
@@ -183,7 +184,7 @@ void setup(void) {
   _puts("" TEXT_NORMAL "]\r\n");  
   _puts("                     TinyUSB      [" TEXT_BOLD "");
   _puts(TINYUSB_VER);
-  _puts("" TEXT_NORMAL "]\r\n");  
+  _puts("" TEXT_NORMAL "]\r\n");
   _puts("----------------------------------------------\r\n");
 
   _puts("Revision             [" TEXT_BOLD "");
@@ -291,6 +292,7 @@ if (SD.begin(SD_CONFIG)) {
 	Status = 0;
 #ifndef CCP_INTERNAL
         if (!_RamLoad((char *)CCPname, CCPaddr)) {
+          _puts("\r\n");
           _puts("Unable to load the CCP.\r\nCPU halted.\r\n");
           break;
         }
@@ -313,9 +315,11 @@ if (SD.begin(SD_CONFIG)) {
 #endif
       }
     } else {
+      _puts("\r\n");
       _puts("Unable to load CP/M CCP.\r\nCPU halted.\r\n");
     }
   } else {
+    _puts("\r\n");
     _puts("Unable to initialize SD card.\r\nCPU halted.\r\n");
   }
 }
