@@ -109,6 +109,11 @@ static struct {  // Each HID instance can has multiple reports
   tuh_hid_report_info_t report_info[MAX_REPORT];
 }hid_info[CFG_TUH_HID];
 
+static bool keyboard_mounted = false;
+static uint8_t keyboard_dev_addr = 0;
+static uint8_t keyboard_idx = 0;
+static uint8_t keyboard_leds = 0;
+static bool keyboard_leds_changed = false;
 
 int old_ascii = -1;
 uint32_t repeat_timeout;
@@ -131,6 +136,9 @@ void usb_host_task(void) {
     deadline = repeat_timeout - now;
   } else if (old_ascii < 0) {
     deadline = UINT32_MAX;
+  }
+  if (keyboard_leds_changed) {
+    tuh_hid_set_report(keyboard_dev_addr, keyboard_idx, 0/*report_id*/, HID_REPORT_TYPE_OUTPUT, &keyboard_leds, sizeof(keyboard_leds));
   }
 }
 
@@ -350,8 +358,8 @@ void process_boot_kbd_report(uint8_t dev_addr, uint8_t idx, const hid_keyboard_r
   bool shift = report.modifier & 0x22;
   bool ctrl = report.modifier & 0x11;
 
-  bool caps = old_report.reserved & 1;
-  bool num = old_report.reserved & 2;
+  bool num = old_report.reserved & 1;
+  bool caps = old_report.reserved & 2;
 
   uint8_t code = 0;
 
@@ -404,17 +412,21 @@ void process_boot_kbd_report(uint8_t dev_addr, uint8_t idx, const hid_keyboard_r
     }
   }
 
-  uint8_t leds = (caps | (num << 1));
-  if (leds != old_report.reserved) {
-  // no worky
-  //auto r = tuh_hid_set_report(dev_addr, idx/*idx*/, 0/*report_id*/, HID_REPORT_TYPE_OUTPUT/*report_type*/, &leds, sizeof(leds));
+//uint8_t leds = (caps | (num << 1));
+  keyboard_leds = (num | (caps << 1));
+  if (keyboard_leds != old_report.reserved) {
+    keyboard_leds_changed = true;
+    // no worky
+    //auto r = tuh_hid_set_report(dev_addr, idx/*idx*/, 0/*report_id*/, HID_REPORT_TYPE_OUTPUT/*report_type*/, &leds, sizeof(leds));
+    //tuh_hid_set_report(dev_addr, idx/*idx*/, 0/*report_id*/, HID_REPORT_TYPE_OUTPUT/*report_type*/, &leds, sizeof(leds));
+  } else {
+    keyboard_leds_changed = false;
   }
-
   old_report = report;
-  old_report.reserved = leds;
+  old_report.reserved = keyboard_leds;
 }
 
-
+/*
 //--------------------------------------------------------------------+
 // Generic Report
 //--------------------------------------------------------------------+
@@ -480,6 +492,7 @@ void process_generic_report(uint8_t dev_addr, uint8_t idx, uint8_t const* report
   {
   }
 }
+*/
 
 //--------------------------------------------------------------------+
 // TinyUSB Host callbacks
@@ -512,6 +525,11 @@ void tuh_hid_mount_cb(uint8_t dev_addr, uint8_t idx, uint8_t const* desc_report,
       break;
 
     case HID_ITF_PROTOCOL_KEYBOARD: //HID_PROTOCOL_BOOT:KEYBOARD
+      if (keyboard_mounted != true) {
+        keyboard_dev_addr = dev_addr;
+        keyboard_idx = idx;
+        keyboard_mounted = true;
+      }
       break;
 
     case HID_ITF_PROTOCOL_MOUSE: //HID_PROTOCOL_BOOT:MOUSE
@@ -526,6 +544,13 @@ void tuh_hid_mount_cb(uint8_t dev_addr, uint8_t idx, uint8_t const* desc_report,
 // Invoked when device with hid interface is un-mounted
 void tuh_hid_umount_cb(uint8_t dev_addr, uint8_t idx)
 {
+  if (dev_addr == keyboard_dev_addr && idx == keyboard_idx) {
+    keyboard_mounted = false;
+    keyboard_dev_addr = 0;
+    keyboard_idx = 0;
+    keyboard_leds = 0;
+    old_report = {0};
+  }
 }
 
 // Invoked when received report from device via interrupt endpoint
@@ -536,14 +561,16 @@ void tuh_hid_report_received_cb(uint8_t dev_addr, uint8_t idx, uint8_t const* re
   switch (itf_protocol)
   {
     case HID_ITF_PROTOCOL_KEYBOARD:
-      process_boot_kbd_report(dev_addr, idx, *(hid_keyboard_report_t const*) report );
+      if (keyboard_mounted == true) {
+        process_boot_kbd_report(dev_addr, idx, *(hid_keyboard_report_t const*) report );
+      }
       break;
 
     case HID_ITF_PROTOCOL_MOUSE:
       break;
 
     default:
-      process_generic_report(dev_addr, idx, report, len);
+      //process_generic_report(dev_addr, idx, report, len);
       break;
   }
   // continue to request to receive report
