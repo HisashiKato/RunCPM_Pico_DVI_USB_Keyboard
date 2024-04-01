@@ -138,6 +138,13 @@ void setup(void) {
   // _clrscr();
   // _puts("Opening serial-port...\r\n");  
 
+
+// =========================================================================================
+// "port_init_early()" function performs initial settings for USB keyboard input 
+// and DVI (HDMI display) output.
+// "port_init_early()" function exists in the "pico_sd_spi_dvi_usbkey.h" file
+// in "hardware\pico\" folder.
+// =========================================================================================
   if (!port_init_early()) {
     return;
   }

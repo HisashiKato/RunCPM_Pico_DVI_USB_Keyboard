@@ -142,7 +142,7 @@ void usb_host_task(void) {
   }
 }
 
-bool timer_callback(repeating_timer_t *rtimer) {
+bool timer_callback(repeating_timer_t *rtimer) { // USB Host is executed by timer interrupt.
   usb_host_task();
   return true;
 }
@@ -226,8 +226,7 @@ void msc_flush_cb(void) {
 // DVI Display
 #if USE_DISPLAY
 DVItext1 display(DVI_RES_640x240p60, pimoroni_demo_hdmi_cfg);
-//DVItext1 display(DVI_RES_640x240p60, dvi_breakout_cfg);
-//DVItext1 display(DVI_RES_800x240p30, dvi_breakout_cfg);
+//DVItext1 display(DVI_RES_800x240p30, pimoroni_demo_hdmi_cfg);
 
 #define H_TAB 8
 #define V_TAB 1
@@ -292,7 +291,7 @@ void putch_display(uint8_t ch) {
 bool port_init_early() {
 #if USE_DISPLAY
 //vreg_set_voltage(VREG_VOLTAGE_1_20);
-  delay(10);
+//delay(10);
   if (!display.begin()) {
     return false;
   }
@@ -301,6 +300,7 @@ bool port_init_early() {
 
 #if USE_KEYBOARD
   USBHost.begin(0);
+  // USB Host is executed by timer interrupt.
   add_repeating_timer_us( KBD_INT_TIME/*us*/, timer_callback, NULL, &rtimer );
 
   _getch_hook = getch_usbh;
@@ -325,6 +325,7 @@ bool port_init_early() {
 */
   return true;
 }
+
 /*
 bool port_flash_begin() {
   if (!SD.begin(&blockdevice, true, 1)) { // Start filesystem on the blockdevice
