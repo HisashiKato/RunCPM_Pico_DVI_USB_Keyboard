@@ -47,7 +47,7 @@ Adafruit の作例では、RP2040搭載ボードを2枚、使用しています�
 * 5V電源
 
 今回のプログラムソース(Arduinoスケッチ)では、下記のピンアサインになっています。(Serial1 の入出力が生きています、同時使用が出来ます)
-<img src="images/RunCPM_Pico_PicoDVI_USB_Keyboard.jpg" width="800"><br><br>
+<br><img src="images/RunCPM_Pico_PicoDVI_USB_Keyboard.jpg" width="800"><br><br>
 
 Raspberry Pi Pico (RP2040) は、ピンアサインが比較的柔軟に設定できるので、各自の環境に合わせて書き直して使用してください。
 PicoDVIボードのピンアサインに関しては、私のブログでも説明しています。
@@ -62,7 +62,7 @@ Adafruit の"[RP2040 RunCPM Emulator with USB Keyboard & HDMI screen](https://le
 
 https://github.com/adafruit/Adafruit_Learning_System_Guides/tree/main/runcpm-rp2040-dvi-usb
 
-Adafruit の作例では Pico-PIO-USB を使用していますが、動作周波数の関係で、PicoDVI と共存できないので、RP2040(Raspberry Pi Pico のMCU)内蔵のUSBコントローラを USB Host で使用しています。
+Adafruit の作例では Pico-PIO-USB を使用していますが、動作周波数の関係で Pico-PIO-USB と PicoDVI は共存が出来ないので、RP2040(Raspberry Pi Pico のMCU)内蔵のUSBコントローラを USB Host で使用しています。
 
 Arduino IDE で "RunCPM_v6_1_Pico_DVI_USB_Keyboard.ino" を読み込んで、以下の設定でコンパイルしてください。</br>
 ツールの、
@@ -80,5 +80,5 @@ Arduino IDE のボードマネージャとライブラリマネージャーで�
 
 
 #### おまけ
-英語キーボードの使用が前提なのですが、今回おまけで日本語キーボードでの入力に対応させてみました。
+元のプログラムソースでは英語キーボードの使用が前提になっていますが、今回おまけで日本語キーボードでの入力に対応させてみました。
 RunCPM_v6_1_Pico_DVI_USB_Keyboard\hardware\pico にある "pico_sd_spi_dvi_usbkey.h" 内の「#include "keymapperUS.h"」を「#include "keymapperJP.h"」に書き代えると、日本語キーボード配列になります(記号等の入力が日本語キーボード準拠になります)。
