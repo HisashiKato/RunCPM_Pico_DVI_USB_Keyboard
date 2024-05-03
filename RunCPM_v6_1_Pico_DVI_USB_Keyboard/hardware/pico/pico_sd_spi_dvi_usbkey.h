@@ -535,7 +535,7 @@ void tuh_hid_mount_cb(uint8_t dev_addr, uint8_t idx, uint8_t const* desc_report,
 
     case HID_ITF_PROTOCOL_MOUSE: //HID_PROTOCOL_BOOT:MOUSE
       break;
-    }
+  }
 
   if ( !tuh_hid_receive_report(dev_addr, idx) )
   {
