@@ -156,6 +156,7 @@ bool timer_callback(repeating_timer_t *rtimer) { // USB Host is executed by time
 #define SD_CONFIG SdSpiConfig(SD_CS_PIN, DEDICATED_SPI, SPI_CLOCK)
 DedicatedSpiCard blockdevice;
 */
+
 //FatFileSystem SD;
 // =========================================================================================
 // Define SdFat as alias for SD
