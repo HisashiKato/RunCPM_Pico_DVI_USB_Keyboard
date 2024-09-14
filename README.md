@@ -77,6 +77,8 @@ Arduino IDE で "RunCPM_v6_1_Pico_DVI_USB_Keyboard.ino" を読み込んで、以
 ※Raspberry Pi Pico / RP2040 の Arduino Core や、使用するライブラリ群は、出来る限り新しいバージョンに更新してください。</br>
 特に Raspberry Pi Pico / RP2040 の Arduino Core と Adafruit TinyUSB Library for Arduino は、昔のバージョンでは RP2040 のネイティブUSBホストに対応していないため、USBキーボードが使用できません。</br>
 Arduino IDE のボードマネージャとライブラリマネージャーで更新を行って、出来る限り新しいバージョンを使用してください。</br></br>
+※2024年09月14日現在、ボードマネージャーで RP2040 の Arduino Core を 4.X.X に上げると、コンパイルエラーになります。</br></br>
+</br></br>
 
 
 #### おまけ
