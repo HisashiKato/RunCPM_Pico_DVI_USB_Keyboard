@@ -83,7 +83,7 @@ Arduino IDE のボードマネージャとライブラリマネージャーで�
 コンパイルエラーが</br>
 \Arduino\libraries\PicoDVI_-_Adafruit_Fork\src\libdvi\dvi.c:194:68: error: 'dma_debug_channel_hw_t' has no member named 'tcr'</br>
 ならば</br>
-\PicoDVI_-_Adafruit_Fork\src\libdvi\ フォルダの dvi.c 内の</br>
+\Arduino\libraries\PicoDVI_-_Adafruit_Fork\src\libdvi\ フォルダの dvi.c の194行目の</br>
 'tcr' を 'dbg_tcr' に書き換えて保存</br></br>
 
 #### おまけ
