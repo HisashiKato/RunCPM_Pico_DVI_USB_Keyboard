@@ -78,8 +78,13 @@ Arduino IDE で "RunCPM_v6_1_Pico_DVI_USB_Keyboard.ino" を読み込んで、以
 特に Raspberry Pi Pico / RP2040 の Arduino Core と Adafruit TinyUSB Library for Arduino は、昔のバージョンでは RP2040 のネイティブUSBホストに対応していないため、USBキーボードが使用できません。</br>
 Arduino IDE のボードマネージャとライブラリマネージャーで更新を行って、出来る限り新しいバージョンを使用してください。</br></br>
 ※2024年09月14日現在、ボードマネージャーで RP2040 の Arduino Core を 4.X.X に上げると、コンパイルエラーになります。</br></br>
-</br></br>
 
+暫定対応方法</br>
+コンパイルエラーが</br>
+\Arduino\libraries\PicoDVI_-_Adafruit_Fork\src\libdvi\dvi.c:194:68: error: 'dma_debug_channel_hw_t' has no member named 'tcr'</br>
+ならば</br>
+\PicoDVI_-_Adafruit_Fork\src\libdvi\ フォルダの dvi.c 内の</br>
+'tcr' を 'dbg_tcr' に書き換えて保存</br></br>
 
 #### おまけ
 元のプログラムソースでは英語キーボードの使用が前提になっていますが、今回おまけで日本語キーボードでの入力に対応させてみました。
