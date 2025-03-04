@@ -70,10 +70,10 @@ Arduino IDE で "RunCPM_v6_7_Pico_DVI_USB_Keyboard.ino" を読み込んで、以
 ※ぱいぴこの USB を USB HOST で使用すると、それ以降そのままでは USB からのスケッチ(プログラム)の書き込みが出来ません。</br>
 スケッチを書き込む際は、ぱいぴこのUSBコネクタから USB OTG ケーブルを抜いて、BOOTSELボタンを押しながらPCのUSBケーブルを繋ぐか、PCのUSBケーブルを繋いだ状態でBOOTSELボタンを押しながらRESETボタンを押すと、Arduino IDE のシリアルポートに "UF2 Board" が現れるので、そこに書き込みを行ってください。</br>
 
-※USBキーボードとDVI(HDMI)表示関係の変更は、RunCPM_v6_7_Pico_DVI_USB_Keyboard\hardware\pico\ にある "pico_sd_spi_dvi_usbkey.h" に詰め込んであります。PicoDVIのピンアサインの変更は"pico_sd_spi_dvi_usbkey.h"内の"DVItext1 display(DVI_RES_640x240p60, xxxx_cfg);"を書き換えてください。</br></br>
+※USBキーボード対応と DVI (HDMI) 表示の関係は、"RunCPM_v6_7_Pico_DVI_USB_Keyboard\hardware\pico\" フォルダの "pico_sd_spi_dvi_usbkey.h" に詰め込んであります。PicoDVIのピンアサインの変更は"pico_sd_spi_dvi_usbkey.h"内の"DVItext1 display(DVI_RES_640x240p60, xxxx_cfg);"を書き換えてください。</br></br>
 
 ※2024/09/14：更新</br>
-　コンパイルが通らなくなっていたので、久しぶりに少しメンテナンスしました。それに伴ってピンアサインを変更しました。Raspberry Pi Pico 2 (RP2350) でも動きます。ただし最低限の動作チェックしかしていません。コンパイル済みのUF2ファイルを置いておきます</br></br>
+　コンパイルが通らなくなっていたので、久しぶりに少しメンテナンスしました。それに伴ってピンアサインを変更しました。Raspberry Pi Pico 2 (RP2350) でも動きます。ただし最低限の動作チェックしかしていません。コンパイル済みのUF2ファイルを置いておきます。</br></br>
 
 
 #### おまけ
