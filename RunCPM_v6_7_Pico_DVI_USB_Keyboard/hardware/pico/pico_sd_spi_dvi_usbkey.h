@@ -581,5 +581,3 @@ void tuh_hid_report_received_cb(uint8_t dev_addr, uint8_t idx, uint8_t const* re
 #if defined(__cplusplus)
 }
 #endif
-
-
