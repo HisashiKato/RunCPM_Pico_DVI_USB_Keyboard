@@ -47,13 +47,9 @@ Adafruit の作例では、RP2040搭載ボードを2枚、使用しています�
 * 5V電源
 
 今回のプログラムソース(Arduinoスケッチ)では、下記のピンアサインになっています。(Serial1 の入出力が生きています、同時使用が出来ます)
-<br><img src="images/RunCPM_Pico_PicoDVI_USB_Keyboard.jpg" width="800"><br><br>
+<br><img src="images/RunCPM_Pico_PicoDVI_USB_Keyboard_2.jpg" width="800"><br><br>
 
 Raspberry Pi Pico (RP2040) は、ピンアサインが比較的柔軟に設定できるので、各自の環境に合わせて書き直して使用してください。
-PicoDVIボードのピンアサインに関しては、私のブログでも説明しています。
-
-Raspberry Pi Pico (RP2040) と、PicoDVI用コネクタと、Arduino用PicoDVIライブラリで、HDMIディスプレイに映像出力を試した話(覚え書き)</br>
-http://kato-h.cocolog-nifty.com/khweblog/2023/12/post-ec5830.html</br></br>
 
 
 
@@ -64,28 +60,22 @@ https://github.com/adafruit/Adafruit_Learning_System_Guides/tree/main/runcpm-rp2
 
 Adafruit の作例では Pico-PIO-USB を使用していますが、動作周波数の関係で Pico-PIO-USB と PicoDVI は共存が出来ないので、RP2040(Raspberry Pi Pico のMCU)内蔵のUSBコントローラを USB Host で使用しています。
 
-Arduino IDE で "RunCPM_v6_1_Pico_DVI_USB_Keyboard.ino" を読み込んで、以下の設定でコンパイルしてください。</br>
+Arduino IDE で "RunCPM_v6_7_Pico_DVI_USB_Keyboard.ino" を読み込んで、以下の設定でコンパイルしてください。</br>
 ツールの、
-* ボード:"Raspberry Pi Pico"
+* ボード:"Raspberry Pi Pico" or "Raspberry Pi Pico 2"
 * Optimize:"Optimize Even More (-O3)"
-* USB Stack:"Adafruit TinyUSB Host"
+* USB Stack:"Adafruit TinyUSB Host (native)"
 </br>( "Adafruit TinyUSB Host" を選んでいるにも関わらず warning が出たりしますけれど大丈夫っぽいです)
 
 ※ぱいぴこの USB を USB HOST で使用すると、それ以降そのままでは USB からのスケッチ(プログラム)の書き込みが出来ません。</br>
 スケッチを書き込む際は、ぱいぴこのUSBコネクタから USB OTG ケーブルを抜いて、BOOTSELボタンを押しながらPCのUSBケーブルを繋ぐか、PCのUSBケーブルを繋いだ状態でBOOTSELボタンを押しながらRESETボタンを押すと、Arduino IDE のシリアルポートに "UF2 Board" が現れるので、そこに書き込みを行ってください。</br>
 
-※Raspberry Pi Pico / RP2040 の Arduino Core や、使用するライブラリ群は、出来る限り新しいバージョンに更新してください。</br>
-特に Raspberry Pi Pico / RP2040 の Arduino Core と Adafruit TinyUSB Library for Arduino は、昔のバージョンでは RP2040 のネイティブUSBホストに対応していないため、USBキーボードが使用できません。</br>
-Arduino IDE のボードマネージャとライブラリマネージャーで更新を行って、出来る限り新しいバージョンを使用してください。</br></br>
-※2024年09月14日現在、ボードマネージャーで RP2040 の Arduino Core を 4.X.X に上げると、コンパイルエラーになります。</br></br>
+※USBキーボードとDVI(HDMI)表示関係の変更は、RunCPM_v6_7_Pico_DVI_USB_Keyboard\hardware\pico\ にある "pico_sd_spi_dvi_usbkey.h" に詰め込んであります。PicoDVIのピンアサインの変更は"pico_sd_spi_dvi_usbkey.h"内の"DVItext1 display(DVI_RES_640x240p60, xxxx_cfg);"を書き換えてください。</br></br>
 
-暫定対応方法</br>
-コンパイルエラーが</br>
-\Arduino\libraries\PicoDVI_-_Adafruit_Fork\src\libdvi\dvi.c:194:68: error: 'dma_debug_channel_hw_t' has no member named 'tcr'</br>
-ならば</br>
-\Arduino\libraries\PicoDVI_-_Adafruit_Fork\src\libdvi\ フォルダの dvi.c の194行目の</br>
-'tcr' を 'dbg_tcr' に書き換えて保存</br></br>
+※2024/09/14：更新</br>
+　コンパイルが通らなくなっていたので、久しぶりに少しメンテナンスしました。それに伴ってピンアサインを変更しました。Raspberry Pi Pico 2 (RP2350) でも動きます。ただし最低限の動作チェックしかしていません。コンパイル済みのUF2ファイルを置いておきます</br></br>
+
 
 #### おまけ
 元のプログラムソースでは英語キーボードの使用が前提になっていますが、今回おまけで日本語キーボードでの入力に対応させてみました。
-RunCPM_v6_1_Pico_DVI_USB_Keyboard\hardware\pico にある "pico_sd_spi_dvi_usbkey.h" 内の「#include "keymapperUS.h"」を「#include "keymapperJP.h"」に書き代えると、日本語キーボード配列になります(記号等の入力が日本語キーボード準拠になります)。
+RunCPM_v6_7_Pico_DVI_USB_Keyboard\hardware\pico にある "pico_sd_spi_dvi_usbkey.h" 内の「#include "keymapperUS.h"」を「#include "keymapperJP.h"」に書き代えると、日本語キーボード配列になります(記号等の入力が日本語キーボード準拠になります)。
