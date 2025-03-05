@@ -72,7 +72,7 @@ Arduino IDE で "RunCPM_v6_7_Pico_DVI_USB_Keyboard.ino" を読み込んで、以
 
 ※USBキーボード対応と DVI (HDMI) 表示の関係は、"RunCPM_v6_7_Pico_DVI_USB_Keyboard\hardware\pico\" フォルダの "pico_sd_spi_dvi_usbkey.h" に詰め込んであります。PicoDVIのピンアサインの変更は"pico_sd_spi_dvi_usbkey.h"内の"DVItext1 display(DVI_RES_640x240p60, xxxx_cfg);"を書き換えてください。</br></br>
 
-※2024/09/14：更新</br>
+※2025/03/05：更新</br>
 　コンパイルが通らなくなっていたので、久しぶりに少しメンテナンスしました。それに伴ってピンアサインを変更しました。Raspberry Pi Pico 2 (RP2350) でも動きます。ただし最低限の動作チェックしかしていません。コンパイル済みのUF2ファイルを置いておきます。</br></br>
 
 
