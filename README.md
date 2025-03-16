@@ -74,7 +74,7 @@ Arduino IDE で "RunCPM_v6_7_Pico_DVI_USB_Keyboard.ino" を読み込んで、以
 
 ※2025/03/05：更新</br>
 　コンパイルが通らなくなっていたので、久しぶりに少しメンテナンスしました。それに伴ってピンアサインを変更しました。Raspberry Pi Pico 2 (RP2350) でも動きます。ただし最低限の動作チェックしかしていません。コンパイル済みのUF2ファイルを置いておきます。</br></br>
- ここに置いてあるUF2では、[PicoDVI - Adafruit Fork for Arduino](https://github.com/adafruit/PicoDVI)を、自分で使う用に修正した[フォーク](https://github.com/HisashiKato/PicoDVI)を使用しています。</br></br>
+ ここに置いてあるUF2は、[PicoDVI - Adafruit Fork for Arduino](https://github.com/adafruit/PicoDVI)を、自分で使う用に修正した[フォーク](https://github.com/HisashiKato/PicoDVI)に交換して、コンパイルを行っています。</br></br>
 
 #### おまけ
 元のプログラムソースでは英語キーボードの使用が前提になっていますが、今回おまけで日本語キーボードでの入力に対応させてみました。
