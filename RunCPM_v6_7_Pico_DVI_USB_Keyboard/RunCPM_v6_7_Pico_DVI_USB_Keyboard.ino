@@ -36,7 +36,7 @@
 #define GL_REV "GL20250304.0"
 
 #include <SPI.h>
-#include <SdFat.h>        // One SD library to rule them all - Greinman SdFat from Library Manager
+#include <SdFat.h>
 
 // =========================================================================================
 // Board definitions go into the "hardware" folder, if you use a board different than the
